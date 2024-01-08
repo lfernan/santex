@@ -3,6 +3,7 @@ package com.santex.santex.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -12,15 +13,18 @@ public class Competition {
     private Integer id;
     private String name;
     private String code;
+    private String areaName;
 
-    /*@OneToMany(mappedBy="competition", fetch = FetchType.LAZY)
-    private Set<Team> teams;*/
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "competitionId")
+    private List<Team> teams;
 
 
     /* I decided to remove this relationship and instead just keep the areaName, because
-     * Area as an object of search it is not requested so far in this implementation
+     * Area as an object for search endpoints that it is not requested so far in this implementation
      *
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name="area_id", nullable=false)
-    private Area area;*/
+        @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+        @JoinColumn(name="area_id", nullable=false)
+        private Area area;
+     */
 }

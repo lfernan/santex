@@ -14,5 +14,5 @@ public class Person {
     private String name;
     private String dateOfBirth;
     private String nationality;
-
+    private Integer teamId;
 }

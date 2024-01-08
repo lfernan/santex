@@ -20,4 +20,8 @@ public class TeamService {
                 .map(team -> TeamMapper.mapToDTO(team, includeMembers))
                 .orElseThrow(() -> new SantexExceptionNotFound("Team not found with name " + name));
     }
+
+    public boolean existsTeamById(Integer id) {
+        return teamRepository.findById(id).isPresent();
+    }
 }

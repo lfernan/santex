@@ -15,25 +15,32 @@ import java.util.stream.Collectors;
 public class FootballLeagueService extends BaseService {
 
     private static final String ALL_IMPORTED = "ALL IMPORTED";
+    private static final String LEAGUE_ALREADY_IMPORTED = "LEAGUE ALREADY IMPORTED";
     private final String competitionByCode = "competitions/%s/";
     private final String competitionAndTeamByCode = "competitions/%s/teams";
     private final CompetitionService competitionService;
+    private final TeamService teamService;
 
-    public FootballLeagueService(CompetitionService competitionService) {
+    public FootballLeagueService(CompetitionService competitionService, TeamService teamService) {
         this.competitionService = competitionService;
+        this.teamService = teamService;
     }
 
     public String importLeague(String leagueCode) {
 
+        if(competitionService.existsCompetitionByCode(leagueCode)){
+            return LEAGUE_ALREADY_IMPORTED;
+        }
         // 1- Do a request to get competition details and populate competitions/area
-
         Competition competition = CompetitionMapper.mapToEntity(getCompetitionByCode(leagueCode));
 
         // 2- Do a request to get competitions / teams and populate teams/areas
         CompetitionTeamsDTO competitionTeamsDTO = getCompetitionAndTeamByCode(leagueCode);
 
-        // 3- Get all the teams data
+        // 3- Get all the teams data and filter the existing ones
         List<Team> teams = competitionTeamsDTO.getTeams().stream()
+                // This is comment because if exists team we need to refresh de competition entity with this association
+                //.filter(team -> !teamService.existsTeamById(team.getId()))
                 .map(TeamMapper::mapToEntity)
                 .collect(Collectors.toList());
 

@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "421b01ef-ab71-4e4f-bb2d-7083111e49f0",
+		"name": "Santex-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "780151"
+	},
+	"item": [
+		{
+			"name": "Santex Import League",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlSantexApi}}/importLeague/PL",
+					"host": [
+						"{{urlSantexApi}}"
+					],
+					"path": [
+						"importLeague",
+						"PL"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Santex Get Players",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlSantexApi}}/league/PL/players?teamName=Everton FC",
+					"host": [
+						"{{urlSantexApi}}"
+					],
+					"path": [
+						"league",
+						"PL",
+						"players"
+					],
+					"query": [
+						{
+							"key": "teamName",
+							"value": "Everton FC"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Santex Get Team",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlSantexApi}}/team?includeMembers=true&teamName=Arsenal FC",
+					"host": [
+						"{{urlSantexApi}}"
+					],
+					"path": [
+						"team"
+					],
+					"query": [
+						{
+							"key": "includeMembers",
+							"value": "true"
+						},
+						{
+							"key": "teamName",
+							"value": "Arsenal FC"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "urlSantexApi",
+			"value": "http://localhost:8080/santex/api",
+			"type": "string"
+		}
+	]
+}

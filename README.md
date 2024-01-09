@@ -16,7 +16,7 @@ git clone https://github.com/lfernan/santex.git
 ./gradlew clean
 
 # build project
-./gradlew build
+./gradlew build -x test
 ```
 ## Importing the project with Intellij
 

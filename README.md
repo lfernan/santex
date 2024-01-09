@@ -9,7 +9,7 @@ Clone the project with git command
 ```bash
 git clone https://github.com/lfernan/santex.git
 ```
-## Running gradlew commands
+## Running gradlew commands (JDK 21)
 
 ```bash
 # clean project

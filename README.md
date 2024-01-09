@@ -9,10 +9,20 @@ Clone the project with git command
 ```bash
 git clone https://github.com/lfernan/santex.git
 ```
+## Running gradlew commands
 
+```bash
+# clean project
+./gradlew clean
 
+# build project
+./gradlew build
+```
+## Importing the project with Intellij
 
-## Usage with Docker Compose
+Once that the project is imported run the gradle task clean and build
+
+## Run Using Docker Compose
 
 ```bash
 # go to the project root directory 'santex'
@@ -46,4 +56,6 @@ curl --location 'http://localhost:8080/santex/api/team?includeMembers=true&teamN
 The first intention it was to used GraphQl but I run out of the time box to deliver this test and since I do no have experience with that I will push that change in the future as part of my personal learning
 
 You will see that it is a very basic project in libraries. I generally use SpringBoot with something else like loombok. Also for the search it was in my mind to use Predicates to filter the data, but I decided not to use them. The relationship between Team and Players, Coach has been made using the DiscriminatorColumn strategy. It could be two different tables, but I decided for this approach with just one table containing the all the people who belong to the team with the differentation of PLAYER and COACH roles.
+
+For the testing I face the same problem of being out of the time to configure and push all the unit test at least
 
